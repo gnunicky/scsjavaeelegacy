@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="http://leandro1.homeunix.org:8080/Legacy-war/FE_Database?WSDL" uri="wsdl/leandro1.homeunix.org_8080/Legacy-war/FE_Database.wsdl"/>
+    <system systemId="http://leandro1.homeunix.org:8080/Legacy-war/FE_Database?xsd=1" uri="wsdl/leandro1.homeunix.org_8080/Legacy-war/FE_Database.xsd_1.xsd"/>
+</catalog>

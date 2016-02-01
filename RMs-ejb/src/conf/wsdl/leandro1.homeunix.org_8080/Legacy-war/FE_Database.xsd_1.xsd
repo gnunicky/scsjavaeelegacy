@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI (http://jax-ws.java.net). RI's version is Metro/2.3.2-b608 (trunk-7979; 2015-01-21T12:50:19+0000) JAXWS-RI/2.2.11-b150120.1832 JAXWS-API/2.2.12 JAXB-RI/2.2.12-b141219.1637 JAXB-API/2.2.13-b141020.1521 svn-revision#unknown. --><xs:schema xmlns:tns="http://webservice.com/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://webservice.com/">
+
+<xs:element name="addOffer" type="tns:addOffer"/>
+
+<xs:element name="addOfferResponse" type="tns:addOfferResponse"/>
+
+<xs:element name="addReservation" type="tns:addReservation"/>
+
+<xs:element name="addReservationResponse" type="tns:addReservationResponse"/>
+
+<xs:element name="getDB" type="tns:getDB"/>
+
+<xs:element name="getDBResponse" type="tns:getDBResponse"/>
+
+<xs:complexType name="addOffer">
+<xs:sequence>
+<xs:element name="offerID" type="xs:string" minOccurs="0"/>
+<xs:element name="carID" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="addOfferResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="addReservation">
+<xs:sequence>
+<xs:element name="offerID" type="xs:string" minOccurs="0"/>
+<xs:element name="passengerID" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="addReservationResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getDB">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="getDBResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:offer" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="offer">
+<xs:sequence>
+<xs:element name="busySeat" type="xs:int"/>
+<xs:element name="carID" type="xs:string" minOccurs="0"/>
+<xs:element name="offerID" type="xs:string" minOccurs="0"/>
+<xs:element name="passenger1" type="xs:string" minOccurs="0"/>
+<xs:element name="passenger2" type="xs:string" minOccurs="0"/>
+<xs:element name="passenger3" type="xs:string" minOccurs="0"/>
+<xs:element name="passenger4" type="xs:string" minOccurs="0"/>
+<xs:element name="timestamp" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>

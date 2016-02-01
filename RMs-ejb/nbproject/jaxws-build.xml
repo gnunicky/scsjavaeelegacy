@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?><!--
+        *** GENERATED FROM jax-ws.xml - DO NOT EDIT !                             ***
+        *** TO MODIFY wsimport options USE Web Service node -> Edit WS Attributes ***
+        *** TO CHANGE TARGETS GENERATED TO jaxws-build.xml COPY THOSE             ***
+        *** TARGETS TO ../build.xml AND MODIFY THAT FILE INSTEAD                  ***
+
+        --><project xmlns:xalan="http://xml.apache.org/xslt" xmlns:ejbjarproject2="http://www.netbeans.org/ns/j2ee-ejbjarproject/2" xmlns:jaxws="http://www.netbeans.org/ns/jax-ws/1">
+    <!--
+                ===================
+                JAX-WS WSGEN SECTION
+                ===================
+            -->
+    <!--
+                ===================
+                JAX-WS WSIMPORT SECTION
+                ===================
+            -->
+    <target name="wsimport-init" depends="init">
+        <fail if="${wsimport.bad.version}" message="WsImport ant task defined in the classpath ${j2ee.platform.wsimport.classpath} has a serious bug. See http://wiki.netbeans.org/MetroIssue for details."/>
+        <mkdir dir="${build.generated.sources.dir}/jax-ws"/>
+        <mkdir dir="${classes.dir}"/>
+        <property name="j2ee.platform.wsimport.classpath" value="${libs.jaxws21.classpath}"/>
+        <taskdef name="wsimport" classname="com.sun.tools.ws.ant.WsImport">
+            <classpath path="${j2ee.platform.wsimport.classpath}"/>
+        </taskdef>
+    </target>
+    <target name="wsimport-client-FE_Database" depends="wsimport-init">
+        <mkdir dir="${build.generated.dir}/jax-wsCache/FE_Database"/>
+        <property name="wsdl-FE_Database" location="${meta.inf}/xml-resources/web-service-references/FE_Database/wsdl/leandro1.homeunix.org_8080/Legacy-war/FE_Database.wsdl"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/FE_Database" destdir="${build.generated.dir}/jax-wsCache/FE_Database" wsdl="${wsdl-FE_Database}" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="http://leandro1.homeunix.org:8080/Legacy-war/FE_Database?WSDL" xnocompile="true" xendorsed="true" package="com.ws">
+            <depends file="${wsdl-FE_Database}"/>
+            <produces dir="${build.generated.dir}/jax-wsCache/FE_Database"/>
+        </wsimport>
+        <copy todir="${build.generated.sources.dir}/jax-ws">
+            <fileset dir="${build.generated.dir}/jax-wsCache/FE_Database">
+                <include name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="wsimport-client-clean-FE_Database" depends="-init-project">
+        <delete dir="${build.generated.dir}/jax-wsCache/FE_Database"/>
+        <delete dir="${build.generated.sources.dir}/jax-ws/com/ws"/>
+    </target>
+    <target name="wsimport-client-FE_Database_1" depends="wsimport-init">
+        <mkdir dir="${build.generated.dir}/jax-wsCache/FE_Database_1"/>
+        <property name="wsdl-FE_Database_1" location="${meta.inf}/xml-resources/web-service-references/FE_Database_1/wsdl/leandro2.homeunix.org_8080/Legacy-war/FE_Database.wsdl"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/FE_Database_1" destdir="${build.generated.dir}/jax-wsCache/FE_Database_1" wsdl="${wsdl-FE_Database_1}" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="http://leandro2.homeunix.org:8080/Legacy-war/FE_Database?WSDL" xnocompile="true" xendorsed="true" package="com.ws">
+            <depends file="${wsdl-FE_Database_1}"/>
+            <produces dir="${build.generated.dir}/jax-wsCache/FE_Database_1"/>
+        </wsimport>
+        <copy todir="${build.generated.sources.dir}/jax-ws">
+            <fileset dir="${build.generated.dir}/jax-wsCache/FE_Database_1">
+                <include name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="wsimport-client-clean-FE_Database_1" depends="-init-project">
+        <delete dir="${build.generated.dir}/jax-wsCache/FE_Database_1"/>
+        <delete dir="${build.generated.sources.dir}/jax-ws/com/ws"/>
+    </target>
+    <target name="wsimport-client-FE_Database_2" depends="wsimport-init">
+        <mkdir dir="${build.generated.dir}/jax-wsCache/FE_Database_2"/>
+        <property name="wsdl-FE_Database_2" location="${meta.inf}/xml-resources/web-service-references/FE_Database_2/wsdl/leandro3.homeunix.org_8080/Legacy-war/FE_Database.wsdl"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/FE_Database_2" destdir="${build.generated.dir}/jax-wsCache/FE_Database_2" wsdl="${wsdl-FE_Database_2}" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="http://leandro3.homeunix.org:8080/Legacy-war/FE_Database?WSDL" xnocompile="true" xendorsed="true" package="com.ws">
+            <depends file="${wsdl-FE_Database_2}"/>
+            <produces dir="${build.generated.dir}/jax-wsCache/FE_Database_2"/>
+        </wsimport>
+        <copy todir="${build.generated.sources.dir}/jax-ws">
+            <fileset dir="${build.generated.dir}/jax-wsCache/FE_Database_2">
+                <include name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="wsimport-client-clean-FE_Database_2" depends="-init-project">
+        <delete dir="${build.generated.dir}/jax-wsCache/FE_Database_2"/>
+        <delete dir="${build.generated.sources.dir}/jax-ws/com/ws"/>
+    </target>
+    <target name="wsimport-client-generate" depends="wsimport-client-FE_Database, wsimport-client-FE_Database_1, wsimport-client-FE_Database_2"/>
+</project>

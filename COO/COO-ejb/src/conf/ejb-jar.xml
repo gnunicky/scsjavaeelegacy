@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ejb-jar xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+        version="3.2"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/ejb-jar_3_2.xsd">
+        <enterprise-beans>
+        <session>
+            
+            <ejb-name>COO</ejb-name>
+            <mapped-name>COOBean</mapped-name>  
+                  
+            <env-entry>
+                <description>
+                    Coda sulla quale di troverà in ascolto il COO_MDB
+                </description>
+                <env-entry-name>queue</env-entry-name>
+                <env-entry-type>java.lang.String</env-entry-type>
+                <env-entry-value>QUEUE1</env-entry-value>
+            </env-entry>
+            
+            <env-entry>
+                <description>
+                    Identificativo del Coordinator.
+                </description>
+                <env-entry-name>ID</env-entry-name>
+                <env-entry-type>java.lang.Integer</env-entry-type>
+                <env-entry-value>1</env-entry-value>
+            </env-entry>
+            
+            <env-entry>
+                <description>
+                   Time out per il quale il COO controlla se il quorum di 
+                   scrittura o di lettura è stato soddisfatto.
+                </description>
+                <env-entry-name>N</env-entry-name>
+                <env-entry-type>java.lang.Integer</env-entry-type>
+                <env-entry-value>3</env-entry-value>
+            </env-entry>
+            
+            <env-entry>
+                <description>
+                   Time out per il quale il COO controlla se il quorum di 
+                   scrittura o di lettura è stato soddisfatto.
+                </description>
+                <env-entry-name>abortTimeout</env-entry-name>
+                <env-entry-type>java.lang.Integer</env-entry-type>
+                <env-entry-value>5000</env-entry-value>
+            </env-entry>
+            
+            <env-entry>
+                <description>
+                   Tempo massimo (espresso in millisecondi) per cui il messaggio
+                   JMS può arrivare ad destinazione, altrimenti il messaggio 
+                   viene distrutto.
+                </description>
+                <env-entry-name>timeToLive_ms</env-entry-name>
+                <env-entry-type>java.lang.Integer</env-entry-type>
+                <env-entry-value>5000</env-entry-value>
+            </env-entry>
+        </session>    
+        
+        
+        
+        
+        
+        
+        <session>
+            <ejb-name>FaultDetectorClient</ejb-name>
+            <mapped-name>COOBean</mapped-name>  
+            
+            <env-entry>
+                <description>
+                    Intervallo di tempo con cui vengono mandati gli heartbeat
+                </description>
+                <env-entry-name>heartbeatRate</env-entry-name>
+                <env-entry-type>java.lang.Integer</env-entry-type>
+                <env-entry-value>2000</env-entry-value>
+            </env-entry>
+            
+            <env-entry>
+                <description>
+                    Indirizzo ip del fault detector
+                </description>
+                <env-entry-name>address</env-entry-name>
+                <env-entry-type>java.lang.String</env-entry-type>
+                <env-entry-value>127.0.0.1</env-entry-value>
+            </env-entry>
+            
+            <env-entry>
+                <description>
+                    Porta di ascolto del fault detector
+                </description>
+                <env-entry-name>port</env-entry-name>
+                <env-entry-type>java.lang.Integer</env-entry-type>
+                <env-entry-value>9999</env-entry-value>
+            </env-entry>
+            
+            <env-entry>
+                <description>
+                    Nome del processo che si sta monitorando
+                </description>
+                <env-entry-name>processName</env-entry-name>
+                <env-entry-type>java.lang.String</env-entry-type>
+                <env-entry-value>COO</env-entry-value>
+            </env-entry>
+        </session>
+        
+        
+   </enterprise-beans>    
+</ejb-jar>
