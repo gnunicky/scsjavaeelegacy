@@ -18,7 +18,7 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author Leandro
+ * @author Russo , Didomenico e Delpopolo
  */
 public class FE_Servlet_Logged extends HttpServlet {
 

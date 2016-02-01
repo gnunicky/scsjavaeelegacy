@@ -74,7 +74,7 @@
                 </description>
                 <env-entry-name>heartbeatRate</env-entry-name>
                 <env-entry-type>java.lang.Integer</env-entry-type>
-                <env-entry-value>2000</env-entry-value>
+                <env-entry-value>5000</env-entry-value>
             </env-entry>
             
             <env-entry>

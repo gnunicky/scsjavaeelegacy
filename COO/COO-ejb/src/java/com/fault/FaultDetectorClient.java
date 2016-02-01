@@ -14,7 +14,7 @@ import javax.ejb.TimerService;
  *
  * @author Russo , Didomenico e Delpopolo
  */
-//@Startup
+@Startup
 @Singleton(mappedName = "FaultDetectorClient")
 public class FaultDetectorClient{
     

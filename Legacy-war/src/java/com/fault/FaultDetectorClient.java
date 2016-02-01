@@ -56,12 +56,12 @@ public class FaultDetectorClient{
         
     @Timeout
     public void sendHeartBeat(Timer t){
-        /*ConnectionTCP connection=new ConnectionTCP(address,port);
+        ConnectionTCP connection=new ConnectionTCP(address,port);
         try{
             connection.sendHeartBeat(new HeartBeat(processName,heartbeatRate));
         }
         catch(Exception e){
             System.out.println("Fault detectior offline!");
-        } */
+        }
     }
 }

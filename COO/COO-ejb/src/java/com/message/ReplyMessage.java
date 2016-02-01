@@ -5,7 +5,7 @@ import java.io.Serializable;
 
 /**
  *
- * @author leandro
+ * @author Russo , Didomenico e Delpopolo
  */
 public class ReplyMessage implements Serializable,Comparable<ReplyMessage>{
     

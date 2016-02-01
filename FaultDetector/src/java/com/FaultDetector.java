@@ -51,4 +51,21 @@ public class FaultDetector {
         return heartBeatMap.get(hb);
     }
     
+    synchronized public boolean wasSuspected(String processName) {
+        return getProcessStatusMap().get(processName).equalsIgnoreCase("SUSPECTED");
+    }
+
+    public HashMap<String, String> getProcessStatusMap() {
+        return processStatusMap;
+    }
+
+    public HashMap<HeartBeat, Integer> getHeartBeatMap() {
+        return heartBeatMap;
+    }
+
+    public HashMap<String, Integer> getTimeoutMap() {
+        return timeoutMap;
+    }
+    
+    
 }

@@ -17,7 +17,7 @@ public class HeartBeatHandler implements Runnable{
     private FaultDetector fd;
     private ObjectInputStream in;
     
-    HeartBeatHandler(Socket client, FaultDetector fd) {
+    public HeartBeatHandler(Socket client, FaultDetector fd) {
         try {
             this.fd=fd;
             in=new ObjectInputStream(client.getInputStream());
@@ -35,13 +35,13 @@ public class HeartBeatHandler implements Runnable{
             if(data instanceof HeartBeat){
 
                 HeartBeat heartbeat=(HeartBeat)data;
-                System.out.println("Arrivato Heartbeat: "+heartbeat);
+                //System.out.println("Arrivato Heartbeat: "+heartbeat);
                 
                 fd.putHeartBeat(heartbeat);
                 
                 String processName=heartbeat.getProcessName();
                 
-                if(!fd.isPresent(processName)){
+                if(!fd.isPresent(processName) || fd.wasSuspected(processName)){
                     
                     int checkFaultRate_ms = 3 * heartbeat.getNextTimeout();
                     

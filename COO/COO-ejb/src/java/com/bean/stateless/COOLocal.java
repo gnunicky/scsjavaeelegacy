@@ -6,7 +6,7 @@ import javax.ejb.Local;
 
 /**
  *
- * @author Leandro
+ * @author Russo , Didomenico e Delpopolo
  */
 @Local
 public interface COOLocal{

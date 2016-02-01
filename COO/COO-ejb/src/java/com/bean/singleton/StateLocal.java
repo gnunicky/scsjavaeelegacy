@@ -10,7 +10,7 @@ import javax.ejb.Local;
 
 /**
  *
- * @author leandro
+ * @author Russo , Didomenico e Delpopolo
  */
 @Local
 public interface StateLocal {

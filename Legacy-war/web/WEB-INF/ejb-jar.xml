@@ -13,7 +13,7 @@
                 </description>
                 <env-entry-name>heartbeatRate</env-entry-name>
                 <env-entry-type>java.lang.Integer</env-entry-type>
-                <env-entry-value>2000</env-entry-value>
+                <env-entry-value>7000</env-entry-value>
             </env-entry>
             
             <env-entry>
@@ -22,7 +22,7 @@
                 </description>
                 <env-entry-name>address</env-entry-name>
                 <env-entry-type>java.lang.String</env-entry-type>
-                <env-entry-value>127.0.0.1</env-entry-value>
+                <env-entry-value>baviera1.homeunix.org</env-entry-value>
             </env-entry>
             
             <env-entry>
@@ -40,7 +40,7 @@
                 </description>
                 <env-entry-name>processName</env-entry-name>
                 <env-entry-type>java.lang.String</env-entry-type>
-                <env-entry-value>Legacy1</env-entry-value>
+                <env-entry-value>Legacy3</env-entry-value>
             </env-entry>
         </session>
     </enterprise-beans>    

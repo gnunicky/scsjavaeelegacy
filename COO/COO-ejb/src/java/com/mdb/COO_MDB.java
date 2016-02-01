@@ -15,7 +15,7 @@ import javax.jms.ObjectMessage;
 
 /**
  *
- * @author leandro
+ * @author Russo , Didomenico e Delpopolo
  */
 @MessageDriven(activationConfig = {
     @ActivationConfigProperty(propertyName = "destinationLookup", propertyValue = "jms/Queue1"),
