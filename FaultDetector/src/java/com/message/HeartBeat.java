@@ -12,10 +12,13 @@ public class HeartBeat implements Serializable,Comparable<HeartBeat>{
     private String processName;
     
     private int nextTimeout;
+    
+    private long seq;
 
-    public HeartBeat(String processName, int nextTimeout) {
+    public HeartBeat(String processName, int nextTimeout,long seq) {
         this.processName = processName;
         this.nextTimeout = nextTimeout;
+        this.seq=seq;
     }
     
     public String getProcessName() {
@@ -62,13 +65,9 @@ public class HeartBeat implements Serializable,Comparable<HeartBeat>{
         }
         return true;
     }
-    
-    
 
     @Override
     public String toString() {
-        return "HeartBeat{" + "processName=" + processName + ", nextTimeout=" + nextTimeout + '}';
-    }
-
-    
+        return "HeartBeat{" + "processName=" + processName + ", nextTimeout=" + nextTimeout + ", Sequence number=" + seq + '}';
+    } 
 }

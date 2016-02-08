@@ -1,14 +1,8 @@
 package com.servlet;
 
 import com.FaultDetector;
-import com.HeartBeatHandler;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.net.ServerSocket;
-import java.net.Socket;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -19,15 +13,17 @@ import javax.servlet.http.HttpServletResponse;
  * @author leandro
  */
 public class FE_FaultDetector extends HttpServlet {
-    
-    private ServerSocket server;
-    
+        
     private FaultDetector fd;
-       
+
+    private int port;
+    
     private boolean run;
 
     public FE_FaultDetector() {
+        port=9999;
         run=false;
+        fd=new FaultDetector();
     }
     
     
@@ -43,44 +39,72 @@ public class FE_FaultDetector extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String msg="";
+        
+
+        String status=request.getParameter("status");
         String start=request.getParameter("start");
         String stop=request.getParameter("stop");
-        String getStatus=request.getParameter("getStatus");
         
-        RequestDispatcher rd=request.getRequestDispatcher("index.jsp");
+        System.out.println("STATUS:  "+status);
+       
+        String msg="";
+        
         
         if(start!=null){
             if(!run)
-                startFaultDetector();
+                fd.start(port);
             run=true;
             response.sendRedirect( "index.jsp?status=RUN" );
         }
         else if(stop!=null){
             if(run)
-                stopFaultDetector();
+                fd.stop();
             run=false;
             response.sendRedirect( "index.jsp?status=STOP" );
         }
-        else if(getStatus!=null){
-            msg="<h3> "+fd.getProcessStatusMap()+"</h3>";
-            response.setContentType("text/html;charset=UTF-8");
+        else if(status!=null && status.equals("GETSTATUS")){
+           msg="<table class='table table-striped table-hover table-bordered'><thead><tr><th>ISTANZA</th><th>STATO</th></tr></thead><tbody> "+ parseFD(fd.getProcessStatusMap().toString())+"</tbody></table>";
             try (PrintWriter out = response.getWriter()) {
-                out.println("<!DOCTYPE html>");
-                out.println("<html>");
-                out.println("<head>");
-                out.println("<title>Servlet FE_FaultDetector</title>");            
-                out.println("</head>");
-                out.println("<body>");
                 out.println(msg);
-                out.println("<a href='index.jsp?status=RUN'>Back</a>");
-                out.println("</body>");
-                out.println("</html>");
             }
         }
+        else if(status!=null && status.equals("INIT")){
+          
+            try (PrintWriter out = response.getWriter()) {
+                if(run) 
+                    out.println("RUN");
+                else 
+                    out.println("STOP");
+            }
+        } 
         
-
     }
+	
+	private String parseFD(String rawData)
+	{
+		String result = "";
+		int i;
+		for (String row: rawData.split(",")) {
+			i = 0;
+			row = row.replace("{", "");
+			row = row.replace("}", "");
+			result +="</tr>";
+			for (String cell: row.split("=")) {
+				if(i==0)
+				{
+					result +="<td>" + cell + "</td>";
+				}
+				else
+				{
+					result +="<td>" + (cell.contains("ALIVE") ? "<img src='image/green.png' >" : "<img src='image/red.png' >") + "</td>";
+                                        
+				}
+				i++;
+			}
+			result +="<tr>";
+		}
+		return result;
+	}
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -120,41 +144,5 @@ public class FE_FaultDetector extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
-    private boolean startFaultDetector() {   
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    //Questi dati andrebbero caricati da file di configurazione...
-                    int port=9999;
-                    //------------------------------------------------------------
-                    System.out.println("Fault Detector running...");
-                    fd=new FaultDetector();
-                    server=new ServerSocket(port);
-
-                    while(true){                
-                        Socket client=server.accept();
-                        (new Thread(new HeartBeatHandler(client,fd))).start();
-                    }
-                    
-                } 
-                catch (IOException ex) {
-                    Logger.getLogger(FE_FaultDetector.class.getName()).log(Level.SEVERE, null, ex);
-                } 
-            }
-        }).start();
-        return true;
-    }
-    
-    private boolean stopFaultDetector(){
-        try{
-            server.close();
-        }
-        catch(Exception e){
-            return false;
-        }
-        return true;
-    }
-
 }
+

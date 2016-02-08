@@ -65,8 +65,7 @@
         
         
         <session>
-            <ejb-name>FaultDetectorClient</ejb-name>
-            <mapped-name>COOBean</mapped-name>  
+            <ejb-name>FaultDetectorClient</ejb-name> 
             
             <env-entry>
                 <description>
@@ -74,7 +73,7 @@
                 </description>
                 <env-entry-name>heartbeatRate</env-entry-name>
                 <env-entry-type>java.lang.Integer</env-entry-type>
-                <env-entry-value>5000</env-entry-value>
+                <env-entry-value>1500</env-entry-value>
             </env-entry>
             
             <env-entry>
@@ -83,7 +82,7 @@
                 </description>
                 <env-entry-name>address</env-entry-name>
                 <env-entry-type>java.lang.String</env-entry-type>
-                <env-entry-value>127.0.0.1</env-entry-value>
+                <env-entry-value>baviera1.homeunix.org</env-entry-value>
             </env-entry>
             
             <env-entry>

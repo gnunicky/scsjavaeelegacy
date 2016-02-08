@@ -22,25 +22,29 @@ public class FaultHandler extends TimerTask{
 
     @Override
     public void run() {
-        System.out.println("Time out for the heartbeat: "+hb);
-        
+
         int numHeartBeat=fd.getHeartbeatCounter(hb);
         
         String processName=hb.getProcessName();
         
+        fd.log("Timeout for process "+processName);
+        
         if(numHeartBeat==0){
             fd.putProcessStatus(processName,"SUSPECTED");
+            fd.log(processName+" is SUSPECTED");
             System.out.println("Process "+processName+" is suspected!");
         }
         else{      
-            System.out.println("Num Heart beat arrived into round: "+numHeartBeat);
-            fd.resetHeartBeartCount(hb);  
+            //System.out.println("Num Heart beat arrived into round: "+numHeartBeat);
+            fd.log("Num Heart beat arrived into round: "+numHeartBeat);
+            fd.resetHeartBeartCount(hb);
             restartTimeout();
         }
         this.cancel();
     }
     
     private void restartTimeout(){
+        fd.log("Restart timeout process: "+hb.getProcessName());
         FaultHandler timerTask = new FaultHandler(fd,hb,timeout);
         Timer timer = new Timer(true);
         timer.schedule(timerTask,timeout);

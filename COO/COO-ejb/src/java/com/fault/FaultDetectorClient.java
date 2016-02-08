@@ -36,6 +36,8 @@ public class FaultDetectorClient{
     @Resource
     private TimerService timerService;
     
+    private long seq;
+    
     @PostConstruct
     public void init(){
         String msg=
@@ -46,7 +48,7 @@ public class FaultDetectorClient{
                 "Process name monitored: "+processName+"\n\n";
         
         System.out.println(msg);
-        
+        seq=0;
         TimerConfig timerConfig = new TimerConfig();
         timerConfig.setInfo("Heartbeat timer");
         timerConfig.setPersistent(false);
@@ -56,9 +58,11 @@ public class FaultDetectorClient{
         
     @Timeout
     public void sendHeartBeat(Timer t){
-        ConnectionTCP connection=new ConnectionTCP(address,port);
+        HeartBeat hb=new HeartBeat(processName,heartbeatRate,++seq);
+        //System.out.println("COO SEND: "+hb);
+        ConnectionUDP connection=new ConnectionUDP(address,port);
         try{
-            connection.sendHeartBeat(new HeartBeat(processName,heartbeatRate));
+            connection.send(hb);
         }
         catch(Exception e){
             System.out.println("Fault detectior offline!");
