@@ -90,7 +90,7 @@
         
         <%= (login!=null && login.equals("lostSession")) ?
             "<script>"+
-                "alert('La sessione è stata persa! Effettua nuovamente il login..');"+
+                "alert('La sessione ? stata persa! Effettua nuovamente il login..');"+
                 "window.location.href = 'index.jsp';"+
             "</script>"
             :

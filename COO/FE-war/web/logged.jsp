@@ -33,7 +33,7 @@
                                     url : 'FE_Servlet_Logged',
                                     type: 'POST',
                                     data : {
-                                        table1 : $('#table1').val()
+                                        typeRequest:'GET_DB'
                                     },
                                     success : function(responseText) {
                                         $('#table1').append(responseText);
@@ -53,6 +53,7 @@
                                     url : 'FE_Servlet_Logged',
                                     type: 'POST',
                                     data : {
+                                        typeRequest:'ADD_OFFER',
                                         CarID_OfferForm : $('#CarID_OfferForm').val()
                                     },
                                     success : function(responseText) {
@@ -64,7 +65,7 @@
             });
         </script>
  
-        <%--JQUERY add offer asynch call --%>
+        <%--JQUERY add Reservetion asynch call --%>
         <script>
             $(document).ready(function() {
                     $('#button2').click(function() {
@@ -72,6 +73,7 @@
                                     url : 'FE_Servlet_Logged',
                                     type: 'POST',
                                     data : {
+                                        typeRequest:'ADD_RESERVATION',
                                         offerID : $('#offerID').val(),
                                         passengerID : $('#passengerID').val()
                                     },

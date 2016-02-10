@@ -42,30 +42,34 @@ public class FE_Servlet_Logged extends HttpServlet {
         
         if(session!=null){
             
-            String OfferCarID=request.getParameter("CarID_OfferForm");
+            String typeRequest=request.getParameter("typeRequest");
+                        
+            Tag tag=null;
 
-            String table1=request.getParameter("table1");
+            int clientID=COO.createSession(session.getId());
             
-            String offerID=request.getParameter("offerID");
-            String passengerID=request.getParameter("passengerID");
-            
-            Tag tag;
-
-            if(table1!=null){
-                int clientID=COO.createSession(session.getId());
+            if(typeRequest!=null && typeRequest.equals("GET_DB")){
+                
                 tag=COO.getDB(clientID);
-                checkAvailableData(tag,response);
+
             }
-            if(OfferCarID!=null){
-                int clientID=COO.createSession(session.getId());
+            if(typeRequest!=null && typeRequest.equals("ADD_OFFER")){
+                
+                String OfferCarID=request.getParameter("CarID_OfferForm");
+                
                 tag=COO.addOffer(clientID,OfferCarID);
-                checkAvailableData(tag,response);
             }
-            if(offerID!=null && passengerID!=null){
-                int clientID=COO.createSession(session.getId());
+            if(typeRequest!=null && typeRequest.equals("ADD_RESERVATION")){
+                
+                String offerID=request.getParameter("offerID");
+                
+                String passengerID=request.getParameter("passengerID");
+                
                 tag=COO.addReservation(clientID,offerID,passengerID);
-                checkAvailableData(tag,response);
             }
+            
+            if(tag!=null)
+                checkAvailableData(tag,response);
         }
         else{
             RequestDispatcher rd=request.getRequestDispatcher("index.jsp?login=lostSession");
@@ -126,17 +130,18 @@ public class FE_Servlet_Logged extends HttpServlet {
             }
             risp=COO.checkStatusData(tag);
         }
+        Object dataResponse=COO.getData(tag);
         try (PrintWriter out = response.getWriter()) {
             if(risp.equals("ABORT")){
-                out.println("<p id='abortCase'>"+ COO.getData(tag) +"</p> ");
+                out.println("<p id='abortCase'>"+ dataResponse +"</p> ");
             }
             else{
-                Object o=COO.getData(tag);
+                Object o=dataResponse;
                 if(o instanceof String){
-                    out.println("<p>"+ COO.getData(tag) +"</p> ");
+                    out.println("<p>"+ dataResponse +"</p> ");
                 }
                 else{
-                    LinkedList<Offer> list=(LinkedList<Offer>)COO.getData(tag);
+                    LinkedList<Offer> list=(LinkedList<Offer>)dataResponse;
                     for (Offer offer : list) {
                         out.println("<tr>");
                         out.println("<td>"+offer.getOfferID()+"</td>");
